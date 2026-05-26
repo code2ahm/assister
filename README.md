@@ -3,7 +3,7 @@
 **Assister** is a powerful, feature-rich Discord bot built to handle everything your server needs — 
 from security and moderation to automation and utilities. Clean. Fast. Reliable.
 
-🔗 <a href="https://discord.com/oauth2/authorize?client_id=1496794996228231229&permissions=8&integration_type=0&scope=bot">Invite</a> · <a href="https://discord.gg/AtV7WX3qgx">Support Server</a> · <a href="https://assisterbot.xyz/docs">Full Docs</a>
+🔗 <a href="https://discord.com/oauth2/authorize?client_id=1496794996228231229&permissions=8&integration_type=0&scope=bot">Invite</a> · <a href="https://discord.com/invite/jaed6STG7e">Support Server</a> · <a href="https://assisterbot.xyz/docs">Full Docs</a>
 
 
 
@@ -87,7 +87,7 @@ Autoresponder, autoreact, media-only channels and profile badges.
 
 ### 🔗 Links
 
-<a href="https://assisterbot.xyz/docs">Full Documentation</a> · <a href="https://discord.gg/AtV7WX3qgx">Support</a> · <a href="https://assisterbot.xyz/tos">Terms</a> · <a href="https://assisterbot.xyz/pp">Privacy</a> · <a href="https://github.com/code2ahm/code2ahm">GitHub</a> · <a href="https://instagram.com/failed.ahm">Instagram</a>
+<a href="https://assisterbot.xyz/docs">Full Documentation</a> · <a href="https://discord.com/invite/jaed6STG7e">Support</a> · <a href="https://assisterbot.xyz/tos">Terms</a> · <a href="https://assisterbot.xyz/pp">Privacy</a> · <a href="https://github.com/code2ahm/code2ahm">GitHub</a> · <a href="https://instagram.com/failed.ahm">Instagram</a>
 
 
 
