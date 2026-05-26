@@ -1,0 +1,13 @@
+discord.py>=2.6
+jishaku
+aiohttp
+humanfriendly
+psutil
+requests
+beautifulsoup4
+ddgs
+googletrans==4.0.0rc1
+PyNaCl
+colorlog
+davey
+deep-translator

@@ -1,0 +1,2236 @@
+{
+  "1490019077778051204": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1497166042894700637": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": [
+        1217734448947134514, 1497159980900417546, 1479417254666829916,
+        1414972795665911892
+      ]
+    },
+    "antispam": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [
+        1217734448947134514, 1497159980900417546, 1479417254666829916,
+        1414972795665911892
+      ]
+    },
+    "antiinvites": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [
+        1217734448947134514, 1497159980900417546, 1479417254666829916,
+        1414972795665911892
+      ]
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [
+        1217734448947134514, 1497159980900417546, 1479417254666829916,
+        1414972795665911892
+      ]
+    }
+  },
+  "1498763184528425132": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": [1217734448947134514]
+    },
+    "antispam": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1217734448947134514]
+    },
+    "antiinvites": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1217734448947134514]
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1217734448947134514]
+    }
+  },
+  "1247232349217886260": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1493284952245010513": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1209074237852356609": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1376962977852293281": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1402197456791404605": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501204918609117317": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1480838045895757876": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1423356912581476473": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500935461969858611": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1488914578560778270": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500266658554712124": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1422487528963051570": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1496142296318738636": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1492088057686528040": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1480408424918421546": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500867197570912356": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1492898072903286934": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499319572841496678": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1493829833107706028": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501228709586276412": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501225647295430777": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1122906757040193648": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1398472395752341565": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1488914322280284352": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1348398951170052176": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499384167304265758": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501605211280769194": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1448139416798498959": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500524202539745290": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499804621214974042": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500236019314720890": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500585336563040467": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "ban",
+      "whitelist": []
+    }
+  },
+  "1261347882015920139": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501644173885837574": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1496910177902002227": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501649646462959636": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1498384199311425617": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499658426135875666": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499270331012223028": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1498852395629809736": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501339694406041704": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500686474574823444": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500955002741457046": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500805471030738996": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1447616830251204671": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501711560014299206": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1434312870132318261": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501782411481190590": {
+    "antilink": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1497159980900417546]
+    },
+    "antispam": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1497159980900417546]
+    },
+    "antiinvites": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1497159980900417546]
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": [1497159980900417546]
+    }
+  },
+  "1333699412127383552": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1427257115994488854": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1495169579725619372": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499415627968938084": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1499787979290575018": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501815084115034223": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501667008155090954": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1491710488202182706": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1466118651835977881": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501741588366233690": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501913185597390888": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1406673717077213296": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1174359072150147113": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501939105506791568": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501957112664817906": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1478749535323947018": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1498028821771718747": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1399088329252929626": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500478176973820005": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500178917007556639": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500453273251876955": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1482882096203829398": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1491387824014889033": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1498711947292577813": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500206174706860142": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1478798675693277204": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1275084638900977830": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1501537217359777904": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1503306615087038518": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1503616386918912107": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1464450654604099588": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1486393427254972478": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1430245714197483562": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1500108798310748250": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1505695467466657802": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1505369405809496064": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1458992246178185320": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1505820520514588702": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1506164919752724553": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1495197927197638777": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1016325440945803314": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1507295583935795213": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1420436285339865130": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1506653507426451527": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1328373568320573593": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1393850309817929738": {
+    "antilink": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": true,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1467347458337280215": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1507507421143109842": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1508476963529035867": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  },
+  "1508513414115364954": {
+    "antilink": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antispam": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiinvites": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    },
+    "antiswear": {
+      "enabled": false,
+      "punishment": "mute",
+      "whitelist": []
+    }
+  }
+}

@@ -1,0 +1,200 @@
+{
+  "1497166042894700637": {
+    "enabled_events": [
+      "anti_bot",
+      "anti_ping",
+      "anti_channel_create",
+      "anti_channel_delete",
+      "anti_channel_update",
+      "anti_role_create",
+      "anti_role_delete",
+      "anti_role_update",
+      "anti_webhook",
+      "anti_server",
+      "anti_ban",
+      "anti_kick"
+    ],
+    "punishment": "kick",
+    "whitelist": {
+      "1217734448947134514": [
+        "anti_ping",
+        "anti_bot",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_role_create",
+        "anti_channel_update",
+        "anti_server",
+        "anti_ban",
+        "anti_kick",
+        "anti_webhook",
+        "anti_role_update",
+        "anti_role_delete"
+      ],
+      "1497159980900417546": [
+        "anti_bot",
+        "anti_ping",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_channel_update",
+        "anti_role_create",
+        "anti_role_update",
+        "anti_webhook",
+        "anti_server",
+        "anti_role_delete",
+        "anti_ban",
+        "anti_kick"
+      ],
+      "1479417254666829916": [
+        "anti_bot",
+        "anti_ping",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_channel_update",
+        "anti_role_create",
+        "anti_role_update",
+        "anti_role_delete",
+        "anti_webhook",
+        "anti_server",
+        "anti_ban",
+        "anti_kick"
+      ],
+      "1496794996228231229": [
+        "anti_bot",
+        "anti_ping",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_channel_update",
+        "anti_role_create",
+        "anti_role_delete",
+        "anti_role_update",
+        "anti_webhook",
+        "anti_server",
+        "anti_ban",
+        "anti_kick"
+      ],
+      "1414972795665911892": [
+        "anti_bot",
+        "anti_ping",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_channel_update",
+        "anti_role_delete",
+        "anti_role_create",
+        "anti_role_update",
+        "anti_webhook",
+        "anti_server",
+        "anti_ban",
+        "anti_kick"
+      ]
+    }
+  },
+  "333949691962195969": {
+    "enabled_events": ["anti_bot", "anti_ban", "anti_kick"],
+    "punishment": "kick"
+  },
+  "1500456917837811774": {
+    "enabled_events": [
+      "anti_bot",
+      "anti_ping",
+      "anti_channel_create",
+      "anti_channel_delete",
+      "anti_channel_update",
+      "anti_role_create",
+      "anti_role_delete",
+      "anti_role_update",
+      "anti_webhook",
+      "anti_server",
+      "anti_ban",
+      "anti_kick"
+    ],
+    "punishment": "kick"
+  },
+  "1500539150972223629": {
+    "enabled_events": [
+      "anti_bot",
+      "anti_ping",
+      "anti_channel_create",
+      "anti_channel_delete",
+      "anti_channel_update",
+      "anti_role_create",
+      "anti_role_delete",
+      "anti_role_update",
+      "anti_webhook",
+      "anti_server",
+      "anti_ban",
+      "anti_kick"
+    ],
+    "punishment": "kick"
+  },
+  "1500935461969858611": {
+    "enabled_events": [],
+    "punishment": "kick"
+  },
+  "1480838045895757876": {
+    "enabled_events": [
+      "anti_bot",
+      "anti_channel_create",
+      "anti_channel_delete",
+      "anti_channel_update",
+      "anti_role_create",
+      "anti_role_delete",
+      "anti_role_update",
+      "anti_webhook",
+      "anti_server",
+      "anti_ban",
+      "anti_kick"
+    ],
+    "punishment": "kick"
+  },
+  "1498763184528425132": {
+    "whitelist": {
+      "1217734448947134514": [
+        "anti_bot",
+        "anti_ping",
+        "anti_channel_create",
+        "anti_channel_delete",
+        "anti_channel_update",
+        "anti_role_create",
+        "anti_role_update",
+        "anti_role_delete",
+        "anti_server",
+        "anti_webhook",
+        "anti_ban",
+        "anti_kick"
+      ]
+    }
+  },
+  "1501913185597390888": {
+    "enabled_events": ["anti_ban", "anti_kick"],
+    "punishment": "ban"
+  },
+  "1406673717077213296": {
+    "enabled_events": ["anti_ping", "anti_server"],
+    "punishment": "kick"
+  },
+  "1247232349217886260": {
+    "enabled_events": ["anti_bot"],
+    "punishment": "kick"
+  },
+  "1503616386918912107": {
+    "enabled_events": [],
+    "punishment": "kick"
+  },
+  "1508513414115364954": {
+    "enabled_events": [
+      "anti_bot",
+      "anti_ping",
+      "anti_channel_create",
+      "anti_channel_delete",
+      "anti_channel_update",
+      "anti_role_create",
+      "anti_role_delete",
+      "anti_role_update",
+      "anti_webhook",
+      "anti_server",
+      "anti_ban",
+      "anti_kick"
+    ],
+    "punishment": "kick"
+  }
+}
