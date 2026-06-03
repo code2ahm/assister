@@ -128,3 +128,9 @@ The bot stores feature configs as flat JSON files in the root directory. These a
 | `blacklists.txt` | Blacklisted user/guild IDs |
 
 ---
+
+
+
+<div align="center">
+<sub>built by <a href="https://github.com/code2ahm">code2ahm</a> · <a href="https://assisterbot.xyz/docs">docs</a> · <a href="https://assisterbot.xyz/tos">tos</a> · <a href="https://assisterbot.xyz/pp">privacy</a></sub>
+</div>
