@@ -925,7 +925,7 @@ class Automod(commands.Cog):
     async def automod_whitelist_error(self, ctx: commands.Context, error):
         if isinstance(error, commands.MemberNotFound):
             embed = discord.Embed(
-                description=f"{grey} | Member not found. Please mention a valid member.",
+                description=f"{cross} | Member not found. That user is not in this server.",
                 color=colour
             )
             embed.set_author(name=ctx.author, icon_url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url)

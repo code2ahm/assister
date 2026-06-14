@@ -211,6 +211,17 @@ async def on_command_error(ctx: commands.Context, error):
         embed.set_author(name=client.user, icon_url=client.user.avatar.url)
         await chuttt(ctx, embed=embed)
 
+    elif isinstance(error, commands.MemberNotFound):
+        embed = discord.Embed(
+            description=f"{cross} | Member not found. That user is not in this server.",
+            color=colour,
+        )
+        embed.set_author(
+            name=ctx.author,
+            icon_url=ctx.author.avatar.url if ctx.author.avatar else ctx.author.default_avatar.url,
+        )
+        await chuttt(ctx, embed=embed, delete_after=10)
+
     elif isinstance(error, commands.CommandNotFound):
         return
 
