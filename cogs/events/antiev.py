@@ -5,7 +5,6 @@ from datetime import timedelta, timezone, datetime
 import asyncio
 
 
-# ─── Helpers ──────────────────────────────────────────────────────────────────
 
 def _is_enabled(guild_id: str, event: str) -> bool:
     return event in antid.get(guild_id, {}).get("enabled_events", [])
@@ -44,7 +43,6 @@ async def _get_audit_entry(
     return None
 
 
-# ─── Cog ──────────────────────────────────────────────────────────────────────
 
 class AntinukeEvents(commands.Cog):
 
@@ -54,7 +52,6 @@ class AntinukeEvents(commands.Cog):
         self._recently_punished: set[tuple] = set()  # (guild_id, user_id)
 
 
-    # ── Punishment ────────────────────────────────────────────────────────────
 
     async def punish(self, member: discord.Member, punishment: str, reason: str):
         """Apply punishment to a member, skipping if recently punished."""
@@ -88,7 +85,6 @@ class AntinukeEvents(commands.Cog):
             print(f"[Antinuke] punish error: {e}")
 
 
-    # ── Anti Ping ─────────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message):
@@ -125,7 +121,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Mass ping (@everyone/@here) | User not whitelisted")
 
 
-    # ── Anti Bot ──────────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
@@ -164,7 +159,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Added a bot | User not whitelisted")
 
 
-    # ── Anti Channel Create ───────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_channel_create(self, channel: discord.abc.GuildChannel):
@@ -200,7 +194,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Created a channel | User not whitelisted")
 
 
-    # ── Anti Channel Delete ───────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_channel_delete(self, channel: discord.abc.GuildChannel):
@@ -241,7 +234,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Deleted a channel | User not whitelisted")
 
 
-    # ── Anti Channel Update ───────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_channel_update(self, before: discord.abc.GuildChannel, after: discord.abc.GuildChannel):
@@ -314,7 +306,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Updated a channel | User not whitelisted")
 
 
-    # ── Anti Role Create ──────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_role_create(self, role: discord.Role):
@@ -350,7 +341,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Created a role | User not whitelisted")
 
 
-    # ── Anti Role Delete ──────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_role_delete(self, role: discord.Role):
@@ -394,7 +384,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Deleted a role | User not whitelisted")
 
 
-    # ── Anti Role Update ──────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_role_update(self, before: discord.Role, after: discord.Role):
@@ -441,7 +430,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Updated a role | User not whitelisted")
 
 
-    # ── Anti Server ───────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_guild_update(self, before: discord.Guild, after: discord.Guild):
@@ -511,7 +499,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Server settings updated | User not whitelisted")
 
 
-    # ── Anti Webhook ──────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_webhooks_update(self, channel: discord.abc.GuildChannel):
@@ -554,7 +541,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Created a webhook | User not whitelisted")
 
 
-    # ── Anti Ban ──────────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_member_ban(self, guild: discord.Guild, user: discord.User):
@@ -593,7 +579,6 @@ class AntinukeEvents(commands.Cog):
                               "Anti-nuke: Banned a member | User not whitelisted")
 
 
-    # ── Anti Kick ─────────────────────────────────────────────────────────────
 
     @commands.Cog.listener()
     async def on_member_remove(self, member: discord.Member):
