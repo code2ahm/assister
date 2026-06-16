@@ -732,7 +732,6 @@ class Antinuke(commands.Cog):
         ))
         await ctx.reply(view=layout, mention_author=False)
 
-    # ── whitelist ─────────────────────────────────────────────────────────────
 
     @antinuke.group(name='whitelist', aliases=['wl'], invoke_without_command=True,
                     description="Antinuke whitelisting", usage="antinuke whitelist")
