@@ -5,7 +5,6 @@ import asyncio
 import io
 from utils.variables import *
 
-# ─── Cloneable items ────────────────────────────────────────────────────────────
 CLONE_OPTIONS = {
     "roles":         "Roles",
     "categories":    "Categories",
@@ -23,7 +22,6 @@ CLONE_OPTIONS = {
     "permissions":   "Channel Permissions",
 }
 
-# ─── Dropdown ───────────────────────────────────────────────────────────────────
 class CloneSelect(discord.ui.Select):
     def __init__(self):
         options = [
@@ -70,12 +68,10 @@ class CloneView(discord.ui.View):
         self.stop()
 
 
-# ─── Cog ────────────────────────────────────────────────────────────────────────
 class ServerClone(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
-    # ── helpers ──────────────────────────────────────────────────────────────────
 
     async def _get_guild(self, guild_id: int) -> discord.Guild | None:
         return self.bot.get_guild(guild_id) or await self.bot.fetch_guild(guild_id)
@@ -86,7 +82,6 @@ class ServerClone(commands.Cog):
         except discord.NotFound:
             return None
 
-    # ── wipe helpers ──────────────────────────────────────────────────────────────
 
     async def wipe_roles(self, dst: discord.Guild):
         bot_top_role = dst.me.top_role
@@ -133,7 +128,6 @@ class ServerClone(commands.Cog):
             except discord.Forbidden:
                 pass
 
-    # ── clone helpers ─────────────────────────────────────────────────────────────
 
     async def clone_roles(self, src: discord.Guild, dst: discord.Guild) -> dict[int, discord.Role]:
         mapping: dict[int, discord.Role] = {
@@ -318,7 +312,6 @@ class ServerClone(commands.Cog):
                 except (discord.Forbidden, discord.HTTPException):
                     pass
 
-    # ── command ───────────────────────────────────────────────────────────────────
 
     @commands.hybrid_command(
         name="clone",
@@ -384,7 +377,6 @@ class ServerClone(commands.Cog):
                 results.append(f"{caution} {label} — {type(e).__name__}: {e}")
                 return None
 
-        # ── 1. Wipe first ─────────────────────────────────────────────────────────
         if "roles"    in selected: await run("Wipe Roles",    self.wipe_roles(dst))
         if any(k in selected for k in channel_keys):
             await run("Wipe Channels", self.wipe_channels(dst, keep_channel=keep))
@@ -392,7 +384,6 @@ class ServerClone(commands.Cog):
         if "stickers" in selected: await run("Wipe Stickers", self.wipe_stickers(dst))
         if "webhooks" in selected: await run("Wipe Webhooks", self.wipe_webhooks(dst))
 
-        # ── 2. Clone ──────────────────────────────────────────────────────────────
         if "roles" in selected:
             role_map = await run("Roles", self.clone_roles(src, dst)) or {}
 
@@ -409,7 +400,6 @@ class ServerClone(commands.Cog):
         if "server_banner" in selected and src.banner:
             await run("Server Banner", dst.edit(banner=await src.banner.read()))
 
-        # ── Result embed ──────────────────────────────────────────────────────────
         result_embed = discord.Embed(
             description=f"{tick} **Server Cloned Successfully**\n\n<:readlist:1496885036971069450> Cloned Items:\n" + "\n".join(results) if results else "Nothing was cloned.",
             color=colour,
@@ -417,7 +407,6 @@ class ServerClone(commands.Cog):
         result_embed.set_footer(text=f"{src.name}  →  {dst.name}", icon_url=ctx.author.display_avatar.url)
         await msg.edit(content=None, embed=result_embed, view=None)
 
-        # ── Delete the preserved channel now that result is sent ──────────────────
         if keep and any(k in selected for k in channel_keys):
             await asyncio.sleep(2)
             try:
