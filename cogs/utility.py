@@ -6,7 +6,7 @@ from discord.ui import View, Button
 import re, aiohttp
 from utils.variables import *
 from utils.checks import *
-from utils.loads import lafk, saveafk, kalaloda
+from utils.loads import *
 from utils.paginator import Ahm
 from datetime import datetime
 
