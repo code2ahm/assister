@@ -8,9 +8,7 @@ import time
 import aiohttp
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 #  HELPERS
-# ─────────────────────────────────────────────────────────────────────────────
 
 def _game_embed(description: str, author: str, icon_url: str = None,
                 footer: str = None, footer_icon: str = None, color=None) -> discord.Embed:
@@ -32,9 +30,7 @@ class Games(commands.Cog):
     def _free(self, channel_id: int):
         self.games.pop(channel_id, None)
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  TIC-TAC-TOE  — improved: win highlight, timeout, draw detection fix
-    # ─────────────────────────────────────────────────────────────────────────
 
     @commands.hybrid_command(name="tictactoe", aliases=["ttt"],
                              description="Play Tic-Tac-Toe with someone",
@@ -186,9 +182,7 @@ class Games(commands.Cog):
         )
         msg = await ctx.reply(embed=embed, view=view, mention_author=False)
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  ROCK PAPER SCISSORS  — improved: rematch button, cleaner result embed
-    # ─────────────────────────────────────────────────────────────────────────
 
     @commands.hybrid_command(name="rockpaperscissors", aliases=["rps"],
                              description="Play Rock-Paper-Scissors with someone",
@@ -341,9 +335,7 @@ class Games(commands.Cog):
 
         await run_game(reply_target=ctx.message)
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  QUICK REACTION  — improved: leaderboard for multiple rounds, faster UX
-    # ─────────────────────────────────────────────────────────────────────────
 
     @commands.hybrid_command(name="reaction", description="Quick emoji reaction game",
                              usage="reaction [rounds]")
@@ -598,9 +590,7 @@ class Games(commands.Cog):
         view.message = msg
 
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  HIGHER OR LOWER  — number guessing game
-    # ─────────────────────────────────────────────────────────────────────────
 
     @commands.hybrid_command(name="higherorlower", aliases=["hol", "guess"],
                              description="Guess the secret number — higher or lower?",
@@ -678,9 +668,7 @@ class Games(commands.Cog):
 
         self._free(ctx.channel.id)
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  WORD SCRAMBLE
-    # ─────────────────────────────────────────────────────────────────────────
 
     SCRAMBLE_WORDS = [
         "python", "discord", "server", "channel", "member", "message",
@@ -767,9 +755,7 @@ class Games(commands.Cog):
             icon_url=ctx.bot.user.avatar.url,
         ))
 
-    # ─────────────────────────────────────────────────────────────────────────
     #  TRIVIA
-    # ─────────────────────────────────────────────────────────────────────────
 
     TRIVIA = [
         ("What is the capital of Japan?",                   ["tokyo"], "🌏"),
