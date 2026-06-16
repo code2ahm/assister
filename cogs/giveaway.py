@@ -21,9 +21,7 @@ GIVEAWAYS_FILE = "giveaways.json"
 MAX_GIVEAWAYS = 5
 
 
-# ──────────────────────────────────────────────
 #  HELPERS
-# ──────────────────────────────────────────────
 
 def load_giveaways() -> dict:
     if os.path.exists(GIVEAWAYS_FILE):
@@ -79,9 +77,7 @@ def giveaway_embed(prize: str, winners: int, host: discord.Member | discord.User
     return embed
 
 
-# ──────────────────────────────────────────────
 #  COG
-# ──────────────────────────────────────────────
 
 class Giveaways(commands.Cog):
     def __init__(self, bot):
@@ -147,7 +143,6 @@ class Giveaways(commands.Cog):
         if scheduled:
             print(f"[Giveaways] Scheduled {scheduled} giveaway(s) after ready.")
                 
-    # ── REACTION LISTENERS ─────────────────────
 
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload: discord.RawReactionActionEvent):
@@ -183,7 +178,6 @@ class Giveaways(commands.Cog):
             gw["entries"].remove(payload.user_id)
             save_giveaways(data)
 
-    # ── END LOGIC ──────────────────────────────
 
     async def _end_giveaway(self, msg_id: str, delay: float):
         try:
@@ -273,7 +267,6 @@ class Giveaways(commands.Cog):
         finally:
             self._tasks.pop(msg_id, None)
 
-    # ── GIVEAWAY GROUP ─────────────────────────
 
     @commands.hybrid_group(name="giveaway", aliases=["gw"], description="Giveaway commands.", usage="giveaway", category="Giveaways")
     @bled()
@@ -282,7 +275,6 @@ class Giveaways(commands.Cog):
         if cmd:
             await ctx.invoke(cmd, query="giveaway")
 
-    # ── START ──────────────────────────────────
 
     @giveaway.command(name="start", description="Starts a new giveaway in the current channel.", usage="giveaway start <duration> <winners> <prize>", category="Giveaways")
     @bled()
@@ -364,7 +356,6 @@ class Giveaways(commands.Cog):
         elif isinstance(error, commands.MissingRequiredArgument):
             await ctx.reply(f"{cross} Usage: `giveaway start <duration> <winners> <prize>`", mention_author=False)
 
-    # ── END ────────────────────────────────────
 
     @giveaway.command(name="end", description="Ends an active giveaway early.", usage="giveaway end <message_id>", category="Giveaways")
     @bled()
@@ -402,7 +393,6 @@ class Giveaways(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.reply("❌ You need **Manage Server** to end giveaways.", mention_author=False, ephemeral=True)
 
-    # ── REROLL ─────────────────────────────────
 
     @giveaway.command(name="reroll", description="Rerolls the winner for a finished giveaway.", usage="giveaway reroll <message_id>", category="Giveaways")
     @bled()
@@ -485,7 +475,6 @@ class Giveaways(commands.Cog):
         if isinstance(error, commands.MissingPermissions):
             await ctx.reply("❌ You need **Manage Server** to reroll giveaways.", mention_author=False, ephemeral=True)
 
-    # ── LIST ───────────────────────────────────
 
     @giveaway.command(name="list", description="Lists all active giveaways in the server.", usage="giveaway list", category="Giveaways")
     @bled()
@@ -535,7 +524,6 @@ class Giveaways(commands.Cog):
         )
         await ctx.reply(embed=embed, mention_author=False)
 
-    # ── DELETE ─────────────────────────────────
 
     @giveaway.command(name="delete", description="Deletes a giveaway without picking a winner.", usage="giveaway delete <message_id>", category="Giveaways")
     @bled()
