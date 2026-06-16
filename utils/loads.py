@@ -1,7 +1,6 @@
 import os, json, tempfile
 from datetime import datetime
 
-# ─── Atomic write helper ──────────────────────────────────────────────────────
 
 def _atomic_save(path, data):
     """Write data to a temp file then atomically replace the target.
@@ -20,7 +19,6 @@ def _atomic_save(path, data):
         print(f"[save error] {path}: {e}")
         raise
 
-# ─── Safe JSON load helper ────────────────────────────────────────────────────
 
 def _load_json(path, default=None):
     if default is None:
@@ -35,7 +33,6 @@ def _load_json(path, default=None):
         print(f"[load error] {path}: {e}")
         return default
 
-# ─── Automod ──────────────────────────────────────────────────────────────────
 
 def lautomod():
     return _load_json('automod.json')
@@ -43,7 +40,6 @@ def lautomod():
 def saveauto(settings):
     _atomic_save('automod.json', settings)
 
-# ─── Antiswear ────────────────────────────────────────────────────────────────
 
 def lantiswear():
     return _load_json('antiswear.json')
@@ -51,11 +47,9 @@ def lantiswear():
 def saveantiswear(settings):
     _atomic_save('antiswear.json', settings)
 
-# ─── Messages (runtime cache, not persisted) ──────────────────────────────────
 
 msgs = {}
 
-# ─── Autoresponder ────────────────────────────────────────────────────────────
 
 arf = 'autorespond.json'
 ard = _load_json(arf)
@@ -63,7 +57,6 @@ ard = _load_json(arf)
 def saveard():
     _atomic_save(arf, ard)
 
-# ─── Autoreact ────────────────────────────────────────────────────────────────
 
 areactdf = 'autoreact.json'
 areactd = _load_json(areactdf)
@@ -71,7 +64,6 @@ areactd = _load_json(areactdf)
 def saveareactd():
     _atomic_save(areactdf, areactd)
 
-# ─── Media channels ───────────────────────────────────────────────────────────
 
 def lmedia(mediafile):
     data = _load_json(mediafile)
@@ -88,7 +80,6 @@ def savemedia(mediafile, data):
 mdch = lmedia('media.json')
 bymd = lmedia('mediabypass.json')
 
-# ─── AFK ─────────────────────────────────────────────────────────────────────
 
 def lafk():
     return _load_json('afk.json')
@@ -100,7 +91,6 @@ def kalaloda(iso_str):
     dt = datetime.fromisoformat(iso_str)
     return int(dt.timestamp())
 
-# ─── Autorole ─────────────────────────────────────────────────────────────────
 
 autorolef = 'autorole.json'
 
@@ -116,7 +106,6 @@ if 'humans' not in autoroleconfig:
 if 'bots' not in autoroleconfig:
     autoroleconfig['bots'] = []
 
-# ─── Antinuke ─────────────────────────────────────────────────────────────────
 
 antinukef = 'antinuke.json'
 antid = _load_json(antinukef)
@@ -127,7 +116,6 @@ def lantinuke():
 def saveanti(data):
     _atomic_save(antinukef, data)
 
-# ─── VC Role ──────────────────────────────────────────────────────────────────
 
 vcrolef = 'vcrole.json'
 vcdata = _load_json(vcrolef)
@@ -138,7 +126,6 @@ def lvcrole():
 def savevcrole(data):
     _atomic_save(vcrolef, data)
 
-# ─── JTC ─────────────────────────────────────────────────────────────────────
 
 jtcf = 'jtc.json'
 
@@ -148,7 +135,6 @@ def ljtc():
 def savejtc(data):
     _atomic_save(jtcf, data)
 
-# ─── Welcome ──────────────────────────────────────────────────────────────────
 
 welcomef = 'welcome.json'
 
@@ -157,3 +143,12 @@ def lwelcome():
 
 def savewelcome(data):
     _atomic_save(welcomef, data)
+
+
+rrf = 'reactionrole.json'
+
+def lrr():
+    return _load_json(rrf)
+
+def saverr(data):
+    _atomic_save(rrf, data)
