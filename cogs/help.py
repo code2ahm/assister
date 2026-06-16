@@ -39,44 +39,38 @@ def _make_dropdown(current: str | None = None) -> ui.Select:
     
 class HelpHomeLayout(ui.LayoutView):
 
-    def __init__(self, user: discord.abc.User, prefix: str):
+    def __init__(self, user: discord.abc.User, prefix: str, bot):
         super().__init__(timeout=120)
         self.user   = user
         self.prefix = prefix
+        self.bot    = bot
 
         total_cmds = sum(len(v) for v in lul.values())
         total_cats = len(lulll)
+        avatar_url = bot.user.avatar.url if bot.user.avatar else bot.user.default_avatar.url
 
-        c1 = ui.Container()
-        c1.add_item(ui.TextDisplay(
-            f"### <:helper:1500044306130403358> Assister Help Overview\n"
-            f"{total_cmds} commands  ·  {total_cats} categories\n\n"
-            f"`{prefix}help <category>` — browse a category\n"
-            f"`{prefix}help <command>` — look up a command"
+        c = ui.Container()
+        c.add_item(ui.Section(
+            ui.TextDisplay(
+                f"### <:assister:1500016915333124106> Assister Help Overview\n\n"
+                f"`{prefix}help <category>` browse a category\n"
+                f"`{prefix}help <command>` look up a command\n\n"
+                f"`{total_cmds}` commands across `{total_cats}` categories\n"
+            ),
+            accessory=ui.Thumbnail(avatar_url),
         ))
-        self.add_item(c1)
-
-        sec_lines = "\n".join(
-            f"{lull[c]}  **{c.capitalize()}**\n-# {lulll[c]}\n"
-            for c in _GROUP_SECURITY
-        )
-        c2 = ui.Container()
-        c2.add_item(ui.TextDisplay(
-            f"### Security & Moderation\n\n"
-            f"{sec_lines}"
+        c.add_item(ui.Separator(spacing=discord.SeparatorSpacing.small))
+        c.add_item(ui.TextDisplay(
+            f"Assister is a multi-purpose moderation and utility bot designed to keep your server organised, secure, and fun. "
+            f"From automated protection against raids and spam to interactive giveaways, polls, and mini-games, "
+            f"Assister gives you everything you need in one clean package.\n\n"
+            f"**Some useful link(s)**\n"
+            f"[🡵 Full command docs](https://assisterbot.xyz/docs)\n"
+            f"[🡵 Privacy Policy](https://assisterbot.xyz/pp)   [🡵 Terms of Service](https://assisterbot.xyz/tos)\n"
+            f"[🡵 GitHub](https://github.com/code2ahm/assister)\n\n"
+            f"**Use the dropdown below to browse a category and explore all available commands.**"
         ))
-        self.add_item(c2)
-
-        util_lines = "\n".join(
-            f"{lull[c]}  **{c.capitalize()}**\n-# {lulll[c]}\n"
-            for c in _GROUP_UTILITY
-        )
-        c3 = ui.Container()
-        c3.add_item(ui.TextDisplay(
-            f"### Utility & Fun\n\n"
-            f"{util_lines}"
-        ))
-        self.add_item(c3)
+        self.add_item(c)
 
         self.add_item(ui.TextDisplay(f"-# Requested by {self.user.display_name}"))
 
@@ -89,7 +83,7 @@ class HelpHomeLayout(ui.LayoutView):
     async def _on_select(self, interaction: discord.Interaction):
         cat = interaction.data["values"][0]
         await interaction.response.edit_message(
-            view=HelpCategoryLayout(interaction.user, cat, _get_prefix(interaction))
+            view=HelpCategoryLayout(interaction.user, cat, _get_prefix(interaction), self.bot)
         )
 
 
@@ -99,11 +93,12 @@ class HelpHomeLayout(ui.LayoutView):
 class HelpCategoryLayout(ui.LayoutView):
     MAX_PER_PAGE = 6
 
-    def __init__(self, user: discord.abc.User, category: str, prefix: str, page: int = 1):
+    def __init__(self, user: discord.abc.User, category: str, prefix: str, bot=None, page: int = 1):
         super().__init__(timeout=120)
         self.user      = user
         self.category  = category
         self.prefix    = prefix
+        self.bot       = bot
         self.page      = page
 
         self._all_cmds = list(lul.get(category, {}).items())
@@ -208,7 +203,7 @@ class HelpCategoryLayout(ui.LayoutView):
 
     async def _on_home(self, interaction: discord.Interaction):
         await interaction.response.edit_message(
-            view=HelpHomeLayout(interaction.user, _get_prefix(interaction))
+            view=HelpHomeLayout(interaction.user, _get_prefix(interaction), self.bot)
         )
 
     async def _on_next(self, interaction: discord.Interaction):
@@ -219,7 +214,7 @@ class HelpCategoryLayout(ui.LayoutView):
     async def _on_select(self, interaction: discord.Interaction):
         cat = interaction.data["values"][0]
         await interaction.response.edit_message(
-            view=HelpCategoryLayout(interaction.user, cat, _get_prefix(interaction))
+            view=HelpCategoryLayout(interaction.user, cat, _get_prefix(interaction), self.bot)
         )
 
 
@@ -279,12 +274,12 @@ async def _send_command_info(ctx: commands.Context, query: str, bot: commands.Bo
 
             async def _back(interaction: discord.Interaction, _cat=category):
                 await interaction.response.edit_message(
-                    view=HelpCategoryLayout(interaction.user, _cat, _get_prefix(interaction))
+                    view=HelpCategoryLayout(interaction.user, _cat, _get_prefix(interaction), bot)
                 )
 
             async def _go_home(interaction: discord.Interaction):
                 await interaction.response.edit_message(
-                    view=HelpHomeLayout(interaction.user, _get_prefix(interaction))
+                    view=HelpHomeLayout(interaction.user, _get_prefix(interaction), bot)
                 )
 
             back_btn.callback = _back
@@ -330,12 +325,12 @@ class HelpCog(commands.Cog, name="Help"):
         prefix = _get_prefix(ctx)
 
         if query is None:
-            await ctx.reply(view=HelpHomeLayout(ctx.author, prefix), mention_author=False)
+            await ctx.reply(view=HelpHomeLayout(ctx.author, prefix, self.bot), mention_author=False)
             return
 
         query = query.lower()
         if query in lulll:
-            await ctx.reply(view=HelpCategoryLayout(ctx.author, query, prefix), mention_author=False)
+            await ctx.reply(view=HelpCategoryLayout(ctx.author, query, prefix, self.bot), mention_author=False)
         else:
             await _send_command_info(ctx, query, self.bot)
 
