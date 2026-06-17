@@ -4,6 +4,7 @@ from discord.ext import commands
 from discord import app_commands, ui
 from discord.ui import View, Button
 import re, aiohttp
+from utils.prefixes import *
 from utils.variables import *
 from utils.checks import *
 from utils.loads import *
