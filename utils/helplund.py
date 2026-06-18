@@ -230,7 +230,9 @@ lul = {
         "hangman": {"description": "Play a game of Hangman in the channel", "usage": "hangman"},
         "higherorlower": {"description": "Guess the secret number (higher or lower)", "usage": "higherorlower [max]"},
         "wordscramble": {"description": "Unscramble the word before time runs out", "usage": "wordscramble"},
-        "trivia": {"description": "Answer a trivia question before others", "usage": "trivia"}
+        "trivia": {"description": "Answer a trivia question before others", "usage": "trivia"},
+        "connect4": {"description": "Play Connect 4 with another user \u2014 get 4 in a row!", "usage": "connect4 <user>"},
+        "quickmath": {"description": "Solve math problems as fast as you can!", "usage": "quickmath"}
     },
     "extra": {
         "autoresponder": {"description": "Shows autoresponder help", "usage": "autoresponder"},
