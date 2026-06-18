@@ -168,7 +168,7 @@ async def delmsgs(ctx, limit, predicate, *, before=None, after=None):
     
 
 
-developer_team_ids = [1217734448947134514, 1497159980900417546] # worse4sure, ahm.fr
+developer_team_ids = [1217734448947134514, 1497159980900417546, 1414972795665911892] # worse4sure, ahm.fr, ritik
 
 def is_developer():
     async def predicate(ctx: commands.Context):
