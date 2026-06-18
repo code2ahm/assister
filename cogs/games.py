@@ -541,6 +541,12 @@ class Games(commands.Cog):
                 self.hint_def = None
                 self._render()
 
+            async def interaction_check(self, interaction: discord.Interaction) -> bool:
+                if interaction.user != ctx.author:
+                    await interaction.response.send_message(f"{cross} This is {ctx.author.mention}'s hangman game!", ephemeral=True)
+                    return False
+                return True
+
             def _render(self):
                 self.clear_items()
                 stage = len(self.wrong)
