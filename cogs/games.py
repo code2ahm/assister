@@ -350,14 +350,13 @@ class Games(commands.Cog):
                                     async def rematch_cb(interaction: discord.Interaction):
                                         if interaction.user not in players:
                                             return await interaction.response.send_message(f"{cross} Only players can rematch.", ephemeral=True)
-                                        await interaction.response.defer()
                                         for it in self.children:
                                             if isinstance(it, ui.Container):
                                                 it.clear_items()
                                             elif isinstance(it, ui.ActionRow):
                                                 for b in it.children:
                                                     b.disabled = True
-                                        await self.message.edit(view=self)
+                                        await interaction.response.edit_message(view=self)
                                         await run_game(reply_target=None, edit_msg=self.message)
                                     rematch_btn.callback = rematch_cb
                                     rematch_row.add_item(rematch_btn)
