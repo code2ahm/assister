@@ -74,7 +74,7 @@ def _resp(text: str) -> ui.LayoutView:
 class Games(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.games: dict[int, object] = {}
+        self.games: dict[str, object] = {}
         self._session: aiohttp.ClientSession = None
 
     async def cog_load(self):
@@ -84,11 +84,14 @@ class Games(commands.Cog):
         if self._session:
             await self._session.close()
 
-    def _channel_busy(self, ctx: commands.Context) -> bool:
-        return ctx.channel.id in self.games
+    def _key(self, ctx: commands.Context, game: str) -> str:
+        return f"{ctx.channel.id}:{game}"
 
-    def _free(self, channel_id: int):
-        self.games.pop(channel_id, None)
+    def _channel_busy(self, ctx: commands.Context, game: str) -> bool:
+        return self._key(ctx, game) in self.games
+
+    def _free(self, ctx: commands.Context, game: str):
+        self.games.pop(self._key(ctx, game), None)
 
     async def _fetch_word(self) -> str:
         try:
@@ -138,7 +141,7 @@ class Games(commands.Cog):
     @commands.cooldown(1, 10, commands.BucketType.user)
     @app_commands.describe(opponent="Who do you want to play against?")
     async def tictactoe(self, ctx: commands.Context, opponent: discord.Member):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "ttt"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
         if opponent.bot or opponent == ctx.author:
             return await ctx.reply(view=_resp(f"{cross} Invalid opponent."), mention_author=False, delete_after=5)
@@ -219,7 +222,7 @@ class Games(commands.Cog):
                                         f"{e_dot} {players[1].mention} {marks[players[1]]}"
                                     ))
                                     self.add_item(c2)
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "ttt")
                                     return await interaction.response.edit_message(view=self)
 
                                 if check_draw():
@@ -227,7 +230,7 @@ class Games(commands.Cog):
                                     c2 = ui.Container()
                                     c2.add_item(ui.TextDisplay("## \U0001f91d It's a draw!"))
                                     self.add_item(c2)
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "ttt")
                                     return await interaction.response.edit_message(view=self)
 
                                 turn = 1 - turn
@@ -247,7 +250,7 @@ class Games(commands.Cog):
                         c2 = ui.Container()
                         c2.add_item(ui.TextDisplay(f"## \U0001f6d1 Stopped by {interaction.user.mention}"))
                         self.add_item(c2)
-                        outer._free(ctx.channel.id)
+                        outer._free(ctx, "ttt")
                         await interaction.response.edit_message(view=self)
                     stop_btn.callback = stop_cb
                     stop_row.add_item(stop_btn)
@@ -262,10 +265,10 @@ class Games(commands.Cog):
                     await msg.edit(view=self)
                 except Exception:
                     pass
-                outer._free(ctx.channel.id)
+                outer._free(ctx, "ttt")
 
         view = TTTView()
-        self.games[ctx.channel.id] = view
+        self.games[self._key(ctx, "ttt")] = view
         msg = await ctx.reply(view=view, mention_author=False)
 
     @commands.hybrid_command(name="rockpaperscissors", aliases=["rps"],
@@ -274,7 +277,7 @@ class Games(commands.Cog):
     @commands.cooldown(1, 8, commands.BucketType.user)
     @app_commands.describe(opponent="Who do you want to play against?")
     async def rockpaperscissors(self, ctx: commands.Context, opponent: discord.Member):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "rps"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
         if opponent.bot or opponent == ctx.author:
             return await ctx.reply(view=_resp(f"{cross} Invalid opponent."), mention_author=False, delete_after=5)
@@ -286,7 +289,7 @@ class Games(commands.Cog):
 
         async def run_game(reply_target, edit_msg=None):
             choices: dict[discord.Member, str] = {}
-            self.games[ctx.channel.id] = choices
+            self.games[self._key(ctx, "rps")] = choices
 
             class RPSView(ui.LayoutView):
                 def __init__(self):
@@ -359,7 +362,7 @@ class Games(commands.Cog):
                                     rematch_btn.callback = rematch_cb
                                     rematch_row.add_item(rematch_btn)
                                     self.add_item(rematch_row)
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "rps")
                                     await self.message.edit(view=self)
                             btn.callback = cb
                             row.add_item(btn)
@@ -374,7 +377,7 @@ class Games(commands.Cog):
                         c2 = ui.Container()
                         c2.add_item(ui.TextDisplay(f"## \U0001f6d1 Stopped by {interaction.user.mention}"))
                         self.add_item(c2)
-                        outer._free(ctx.channel.id)
+                        outer._free(ctx, "rps")
                         await interaction.response.edit_message(view=self)
                     stop_btn.callback = stop_cb
                     stop_row.add_item(stop_btn)
@@ -393,7 +396,7 @@ class Games(commands.Cog):
                         await self.message.edit(view=self)
                     except Exception:
                         pass
-                    outer._free(ctx.channel.id)
+                    outer._free(ctx, "rps")
 
             view = RPSView()
             if edit_msg:
@@ -411,11 +414,11 @@ class Games(commands.Cog):
     @commands.cooldown(1, 8, commands.BucketType.user)
     @app_commands.describe(rounds="Number of rounds to play (1\u20135, default 1)")
     async def reaction(self, ctx: commands.Context, rounds: int = 1):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "reaction"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
         rounds = max(1, min(rounds, 5))
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "reaction")] = True
 
         scores: dict[int, dict] = {}
 
@@ -502,7 +505,7 @@ class Games(commands.Cog):
             if rnd < rounds:
                 await asyncio.sleep(2)
 
-        self._free(ctx.channel.id)
+        self._free(ctx, "reaction")
 
         if scores:
             sorted_scores = sorted(scores.values(), key=lambda x: (-x["total_pts"], x["total_time"]))
@@ -521,12 +524,12 @@ class Games(commands.Cog):
                              usage="hangman")
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def hangman(self, ctx: commands.Context):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "hangman"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
         word = await self._fetch_word()
         outer = self
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "hangman")] = True
         max_wrong = len(HANGMAN_STAGES) - 1
 
         class HangmanView(ui.LayoutView):
@@ -590,7 +593,7 @@ class Games(commands.Cog):
                                 else:
                                     self.wrong.append(l)
                                 if all(c in self.guessed for c in word) or len(self.wrong) >= max_wrong:
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "hangman")
                                 self._render()
                                 await interaction.response.edit_message(view=self)
 
@@ -615,7 +618,7 @@ class Games(commands.Cog):
                         if self.hint_def:
                             msg_text += f"\n*{self.hint_def}*"
                         if all(c in self.guessed for c in word):
-                            outer._free(ctx.channel.id)
+                            outer._free(ctx, "hangman")
                         self._render()
                         await interaction.response.edit_message(view=self)
                         await ctx.channel.send(msg_text, delete_after=10)
@@ -628,7 +631,7 @@ class Games(commands.Cog):
                 c = ui.Container()
                 c.add_item(ui.TextDisplay(f"\u23f0 Game timed out! The word was **`{word}`**."))
                 self.add_item(c)
-                outer._free(ctx.channel.id)
+                outer._free(ctx, "hangman")
                 try:
                     await msg.edit(view=self)
                 except Exception:
@@ -643,14 +646,14 @@ class Games(commands.Cog):
     @commands.cooldown(1, 8, commands.BucketType.user)
     @app_commands.describe(maximum="Upper bound for the number (default 100)")
     async def higherorlower(self, ctx: commands.Context, maximum: int = 100):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "hol"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
         maximum = max(10, min(maximum, 1000))
         secret = random.randint(1, maximum)
         attempts = 0
         outer = self
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "hol")] = True
 
         await ctx.reply(view=_layout(
             "Higher or Lower",
@@ -704,14 +707,14 @@ class Games(commands.Cog):
                 f"{hint}\nYour guess: `{guess}` | Attempts: `{attempts}`"
             ), delete_after=10)
 
-        self._free(ctx.channel.id)
+        self._free(ctx, "hol")
 
     @commands.hybrid_command(name="wordscramble", aliases=["scramble"],
                              description="Unscramble the word before time runs out",
                              usage="wordscramble")
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def wordscramble(self, ctx: commands.Context):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "scramble"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
         word = await self._fetch_word()
@@ -722,7 +725,7 @@ class Games(commands.Cog):
                 break
         scrambled = "".join(letters)
 
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "scramble")] = True
 
         hint_cost = 0
         definition = None
@@ -795,7 +798,7 @@ class Games(commands.Cog):
             if content == word:
                 pts = max(0, base_points - hint_cost)
                 winner = resp.author
-                self._free(ctx.channel.id)
+                self._free(ctx, "scramble")
                 body = (
                     f"\U0001f389 {winner.mention} got it!\n\n"
                     f"**`{scrambled.upper()}`** \u2192 **`{word.upper()}`**\n\n"
@@ -804,7 +807,7 @@ class Games(commands.Cog):
                 await msg.edit(view=_layout("Word Scramble", body))
                 return
 
-        self._free(ctx.channel.id)
+        self._free(ctx, "scramble")
         await msg.edit(view=_layout(
             "Time's Up!",
             f"\u23f0 Nobody got it in time!\n\n"
@@ -816,12 +819,12 @@ class Games(commands.Cog):
     @commands.cooldown(1, 10, commands.BucketType.user)
     @app_commands.describe(difficulty="Question difficulty: easy, medium, or hard")
     async def trivia(self, ctx: commands.Context, difficulty: str = None):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "trivia"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
         if difficulty and difficulty.lower() not in ("easy", "medium", "hard"):
             difficulty = None
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "trivia")] = True
         api_q = await self._fetch_trivia(difficulty)
         timeout = 20
 
@@ -869,13 +872,13 @@ class Games(commands.Cog):
                                         f"\U0001f3c6 {interaction.user.mention} got it!\n\n"
                                         f"**{question}**\n{tick} Answer: **`{correct}`**"
                                     )
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "trivia")
                                 else:
                                     self._render(finished=True, winner_data=
                                         f"\u274c {interaction.user.mention} answered **{a}** \u2014 wrong!\n\n"
                                         f"**{question}**\n{tick} Answer: **`{correct}`**"
                                     )
-                                    outer._free(ctx.channel.id)
+                                    outer._free(ctx, "trivia")
                                 await interaction.response.edit_message(view=self)
                             btn.callback = cb
                             row.add_item(btn)
@@ -885,7 +888,7 @@ class Games(commands.Cog):
                     if not answered[0]:
                         self._render(finished=True)
                         answered[0] = True
-                        outer._free(ctx.channel.id)
+                        outer._free(ctx, "trivia")
                         try:
                             await msg.edit(view=self)
                         except Exception:
@@ -922,7 +925,7 @@ class Games(commands.Cog):
                     f"**{question}**\n{tick} Answer: **`{correct_answer.title()}`**"
                 ))
 
-            self._free(ctx.channel.id)
+            self._free(ctx, "trivia")
 
     @commands.hybrid_command(name="connect4", aliases=["c4"],
                              description="Play Connect 4 with someone \u2014 get 4 in a row!",
@@ -930,7 +933,7 @@ class Games(commands.Cog):
     @commands.cooldown(1, 15, commands.BucketType.user)
     @app_commands.describe(opponent="Who do you want to play against?")
     async def connect4(self, ctx: commands.Context, opponent: discord.Member):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "c4"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
         if opponent.bot or opponent == ctx.author:
             return await ctx.reply(view=_resp(f"{cross} Invalid opponent."), mention_author=False, delete_after=5)
@@ -941,7 +944,7 @@ class Games(commands.Cog):
         marks = ["\U0001f535", "\U0001f534"]
         turn = 0
         outer = self
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "c4")] = True
 
         def render_grid():
             lines = []
@@ -1021,12 +1024,12 @@ class Games(commands.Cog):
                             mark, wc = check_winner()
                             if mark:
                                 self._render(finished=True, winner=players[turn], win_cells=wc)
-                                outer._free(ctx.channel.id)
+                                outer._free(ctx, "c4")
                                 return await interaction.response.edit_message(view=self)
 
                             if check_draw():
                                 self._render(finished=True)
-                                outer._free(ctx.channel.id)
+                                outer._free(ctx, "c4")
                                 return await interaction.response.edit_message(view=self)
 
                             turn = 1 - turn
@@ -1049,7 +1052,7 @@ class Games(commands.Cog):
                         if interaction.user not in players:
                             return await interaction.response.send_message(f"{cross} Only players can stop.", ephemeral=True)
                         self._render(finished=True, winner=players[1 - turn])
-                        outer._free(ctx.channel.id)
+                        outer._free(ctx, "c4")
                         await interaction.response.edit_message(view=self)
                     stop_btn.callback = stop_cb
                     stop_row.add_item(stop_btn)
@@ -1060,7 +1063,7 @@ class Games(commands.Cog):
                 c = ui.Container()
                 c.add_item(ui.TextDisplay(f"\u23f0 Game timed out! {players[turn].mention} took too long."))
                 self.add_item(c)
-                outer._free(ctx.channel.id)
+                outer._free(ctx, "c4")
                 try:
                     await msg.edit(view=self)
                 except Exception:
@@ -1074,10 +1077,10 @@ class Games(commands.Cog):
                              usage="quickmath")
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def quickmath(self, ctx: commands.Context):
-        if self._channel_busy(ctx):
+        if self._channel_busy(ctx, "math"):
             return await ctx.reply(view=_resp(f"{cross} A game is already running here!"), mention_author=False, delete_after=5)
 
-        self.games[ctx.channel.id] = True
+        self.games[self._key(ctx, "math")] = True
         outer = self
         max_rounds = 10
 
@@ -1174,7 +1177,7 @@ class Games(commands.Cog):
 
             def _render_game_over(self):
                 self.clear_items()
-                outer._free(ctx.channel.id)
+                outer._free(ctx, "math")
                 if not self.participants:
                     c = ui.Container()
                     c.add_item(ui.TextDisplay("## Game Over!\n\nNobody participated."))
