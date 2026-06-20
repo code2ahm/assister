@@ -713,5 +713,120 @@ class Moderation(commands.Cog):
 
 
 
+    @commands.hybrid_command(
+        name="hide",
+        description="Hides a channel from everyone role.",
+        usage="hide [channel]"
+    )
+    @commands.has_guild_permissions(manage_channels=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    @bled()
+    @commands.cooldown(1, 10, commands.BucketType.user)
+    @app_commands.describe(channel="Channel to hide (defaults to current)")
+    async def hide(self, ctx: commands.Context, channel: discord.TextChannel = None):
+        channel = channel or ctx.channel
+
+        confirm_view = YoNo(timeout=60)
+        confirm_view.ctx = ctx
+        confirm_embed = discord.Embed(
+            description=f"❓ **Confirm Hide**\nYou are about to hide {channel.mention}.\n{caution} All role overwrites will be denied view access.",
+            color=colour
+        )
+        confirm_embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+
+        msg = await ctx.reply(embed=confirm_embed, view=confirm_view, mention_author=False)
+        confirmed = await confirm_view.waitt()
+
+        if not confirmed:
+            return await msg.edit(embed=discord.Embed(description=f"{grey} Hide Cancelled", color=colour), view=None)
+
+        await msg.edit(embed=discord.Embed(description=f"<a:1289683858337562625:1517941057931706519> hiding channel from everyone", color=colour), view=None)
+
+        hidden_roles = []
+        failed_roles = []
+
+        for target in channel.overwrites:
+            if isinstance(target, discord.Role):
+                try:
+                    await channel.set_permissions(target, view_channel=False, reason=f"Hidden by {ctx.author}")
+                    hidden_roles.append(target)
+                except:
+                    failed_roles.append(target)
+
+        if not hidden_roles:
+            try:
+                await channel.set_permissions(ctx.guild.default_role, view_channel=False, reason=f"Hidden by {ctx.author}")
+                hidden_roles.append(ctx.guild.default_role)
+            except:
+                failed_roles.append(ctx.guild.default_role)
+
+        lines = [f"## 🔒 Channel Hidden"]
+        if hidden_roles:
+            lines.append(f"\n**Hidden from:**\n" + "\n".join(f"{tick} {r.mention}" for r in hidden_roles))
+        if failed_roles:
+            lines.append(f"\n**Failed:**\n" + "\n".join(f"{cross} {r.mention}" for r in failed_roles))
+
+        result_embed = discord.Embed(
+            description="\n".join(lines),
+            color=colour
+        )
+        result_embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
+        await msg.edit(embed=result_embed, view=None)
+
+
+    @commands.hybrid_command(
+        name="unhide",
+        description="Unhides a channel from everyone role.",
+        usage="unhide [channel]"
+    )
+    @commands.has_guild_permissions(manage_channels=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    @bled()
+    @commands.cooldown(1, 10, commands.BucketType.user)
+    @app_commands.describe(channel="Channel to unhide (defaults to current)")
+    async def unhide(self, ctx: commands.Context, channel: discord.TextChannel = None):
+        channel = channel or ctx.channel
+
+        confirm_view = YoNo(timeout=60)
+        confirm_view.ctx = ctx
+        confirm_embed = discord.Embed(
+            description=f"❓ **Confirm Unhide**\nYou are about to unhide {channel.mention}.\n{caution} All role overwrites will have view access restored.",
+            color=colour
+        )
+        confirm_embed.set_author(name=ctx.author.display_name, icon_url=ctx.author.display_avatar.url)
+
+        msg = await ctx.reply(embed=confirm_embed, view=confirm_view, mention_author=False)
+        confirmed = await confirm_view.waitt()
+
+        if not confirmed:
+            return await msg.edit(embed=discord.Embed(description=f"{grey} Unhide Cancelled", color=colour), view=None)
+
+        await msg.edit(embed=discord.Embed(description=f"<a:1289683858337562625:1517941057931706519> unhiding channel from everyone", color=colour), view=None)
+
+        unhidden_roles = []
+        failed_roles = []
+
+        for target in channel.overwrites:
+            if isinstance(target, discord.Role):
+                try:
+                    await channel.set_permissions(target, view_channel=None, reason=f"Unhidden by {ctx.author}")
+                    unhidden_roles.append(target)
+                except:
+                    failed_roles.append(target)
+
+        lines = [f"## 🔓 Channel Unhidden"]
+        if unhidden_roles:
+            lines.append(f"\n**Unhidden for:**\n" + "\n".join(f"{tick} {r.mention}" for r in unhidden_roles))
+        if failed_roles:
+            lines.append(f"\n**Failed:**\n" + "\n".join(f"{cross} {r.mention}" for r in failed_roles))
+
+        result_embed = discord.Embed(
+            description="\n".join(lines),
+            color=colour
+        )
+        result_embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
+        await msg.edit(embed=result_embed, view=None)
+
+
 async def setup(bot):
     await bot.add_cog(Moderation(bot))
