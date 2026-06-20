@@ -315,8 +315,6 @@ lul = {
 
     # },
     # "moderation": {
-    #     "hide": {"description": "Hides a channel from everyone role", "usage": "hide [channel]"},
-    #     "unhide": {"description": "Unhides a channel from everyone role", "usage": "unhide [channel]"},
     #     "hideall": {"description": "Hides all channels from everyone role", "usage": "hideall"},
     #     "unhideall": {"description": "Unhides all channels from everyone role", "usage": "unhideall"},
     #     "lock": {"description": "Locks a channel for everyone role", "usage": "lock [channel]"},
