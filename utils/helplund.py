@@ -300,6 +300,8 @@ lul = {
         "addrole": {"description": "Assigns a role to a member", "usage": "role <member> <role>"},
         "removerole": {"description": "Removes a role from a member", "usage": "rrole <member> <role>"},
         "clonechannel": {"description": "Deletes and recreates the channel", "usage": "nuke [channel]"},
+        "hide": {"description": "Hides a channel from everyone role", "usage": "hide [channel]"},
+        "unhide": {"description": "Unhides a channel from everyone role", "usage": "unhide [channel]"},
     }
 }
 
