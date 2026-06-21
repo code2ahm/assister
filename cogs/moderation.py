@@ -790,10 +790,13 @@ class Moderation(commands.Cog):
                 failed_roles.append(ctx.guild.default_role)
 
         pages = self._make_pages("🔒 Channel Hidden", hidden_roles, failed_roles, "Hidden from", "Failed", ctx)
-        paginator = Ahm(pages=pages, timeout=120)
-        paginator.message = msg
-        paginator.ctx = ctx
-        await paginator.update_message()
+        if len(pages) > 1:
+            paginator = Ahm(pages=pages, timeout=120)
+            paginator.message = msg
+            paginator.ctx = ctx
+            await paginator.update_message()
+        else:
+            await msg.edit(embed=pages[0], view=None)
 
 
     @commands.hybrid_command(
@@ -837,10 +840,13 @@ class Moderation(commands.Cog):
                     failed_roles.append(target)
 
         pages = self._make_pages("🔓 Channel Unhidden", unhidden_roles, failed_roles, "Unhidden for", "Failed", ctx)
-        paginator = Ahm(pages=pages, timeout=120)
-        paginator.message = msg
-        paginator.ctx = ctx
-        await paginator.update_message()
+        if len(pages) > 1:
+            paginator = Ahm(pages=pages, timeout=120)
+            paginator.message = msg
+            paginator.ctx = ctx
+            await paginator.update_message()
+        else:
+            await msg.edit(embed=pages[0], view=None)
 
 
 async def setup(bot):
