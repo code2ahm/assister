@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from discord import utils as Utils, app_commands, ui
 from utils.prefixes import *
 from utils.variables import *
-from utils.paginator import YoNo
+from utils.paginator import YoNo, Ahm
 from utils.checks import *
 from discord.ui import Button, View
 from typing import Union
@@ -713,6 +713,35 @@ class Moderation(commands.Cog):
 
 
 
+    def _make_pages(self, title: str, tick_roles: list, cross_roles: list, label_ok: str, label_fail: str, ctx):
+        pages = []
+        per_page = 20
+
+        if tick_roles:
+            chunks = [tick_roles[i:i+per_page] for i in range(0, len(tick_roles), per_page)]
+            for idx, chunk in enumerate(chunks):
+                lines = [f"## {title}"]
+                lines.append(f"\n**{label_ok} ({len(tick_roles)}):**")
+                lines.append("\n".join(f"{tick} {r.mention}" for r in chunk))
+                if len(chunks) > 1:
+                    lines.append(f"\nPage {idx+1} of {len(chunks)}")
+                embed = discord.Embed(description="\n".join(lines), color=colour)
+                embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
+                pages.append(embed)
+
+        if cross_roles:
+            lines = [f"## {title}"]
+            lines.append(f"\n**{label_fail} ({len(cross_roles)}):**")
+            lines.append("\n".join(f"{cross} {r.mention}" for r in cross_roles))
+            embed = discord.Embed(description="\n".join(lines), color=colour)
+            embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
+            pages.append(embed)
+
+        if not pages:
+            return [discord.Embed(description=f"## {title}\n\nNo roles affected.", color=colour)]
+        return pages
+
+
     @commands.hybrid_command(
         name="hide",
         description="Hides a channel from everyone role.",
@@ -760,18 +789,11 @@ class Moderation(commands.Cog):
             except:
                 failed_roles.append(ctx.guild.default_role)
 
-        lines = [f"## 🔒 Channel Hidden"]
-        if hidden_roles:
-            lines.append(f"\n**Hidden from:**\n" + "\n".join(f"{tick} {r.mention}" for r in hidden_roles))
-        if failed_roles:
-            lines.append(f"\n**Failed:**\n" + "\n".join(f"{cross} {r.mention}" for r in failed_roles))
-
-        result_embed = discord.Embed(
-            description="\n".join(lines),
-            color=colour
-        )
-        result_embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
-        await msg.edit(embed=result_embed, view=None)
+        pages = self._make_pages("🔒 Channel Hidden", hidden_roles, failed_roles, "Hidden from", "Failed", ctx)
+        paginator = Ahm(pages=pages, timeout=120)
+        paginator.message = msg
+        paginator.ctx = ctx
+        await paginator.update_message()
 
 
     @commands.hybrid_command(
@@ -814,18 +836,11 @@ class Moderation(commands.Cog):
                 except:
                     failed_roles.append(target)
 
-        lines = [f"## 🔓 Channel Unhidden"]
-        if unhidden_roles:
-            lines.append(f"\n**Unhidden for:**\n" + "\n".join(f"{tick} {r.mention}" for r in unhidden_roles))
-        if failed_roles:
-            lines.append(f"\n**Failed:**\n" + "\n".join(f"{cross} {r.mention}" for r in failed_roles))
-
-        result_embed = discord.Embed(
-            description="\n".join(lines),
-            color=colour
-        )
-        result_embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
-        await msg.edit(embed=result_embed, view=None)
+        pages = self._make_pages("🔓 Channel Unhidden", unhidden_roles, failed_roles, "Unhidden for", "Failed", ctx)
+        paginator = Ahm(pages=pages, timeout=120)
+        paginator.message = msg
+        paginator.ctx = ctx
+        await paginator.update_message()
 
 
 async def setup(bot):
