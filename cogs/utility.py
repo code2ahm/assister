@@ -102,6 +102,7 @@ class Utility(commands.Cog):
         URL_RE          = re.compile(r"https?://\S+\.(?:png|jpg|jpeg|gif|webp)(\?\S*)?", re.IGNORECASE)
 
         tokens: list[str] = []
+        custom_name: str | None = None
 
         ref = ctx.message.reference
         if ref:
@@ -122,6 +123,12 @@ class Utility(commands.Cog):
             url_tokens = URL_RE.finditer(emojis)
             for m in url_tokens:
                 tokens.append(m.group(0))
+
+            if len(tokens) == 1:
+                remaining = CUSTOM_EMOJI_RE.sub("", emojis)
+                remaining = URL_RE.sub("", remaining).strip()
+                if remaining:
+                    custom_name = remaining
 
         if not tokens:
             await self._send_error(
@@ -172,6 +179,8 @@ class Utility(commands.Cog):
                 failed.append((token[:30], "Unrecognised format"))
                 continue
 
+            if custom_name and len(tokens) == 1:
+                emoji_name = custom_name
             emoji_name = re.sub(r"[^A-Za-z0-9_]", "_", emoji_name)[:32]
             if len(emoji_name) < 2:
                 emoji_name = emoji_name.ljust(2, "_")
