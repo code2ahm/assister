@@ -58,10 +58,6 @@ class AvatarView(View):
 
 
 
-CUSTOM_EMOJI_RE = re.compile(r"<(a?):([A-Za-z0-9_]+):(\d+)>")
-URL_RE = re.compile(r"https?://\S+\.(?:png|jpg|jpeg|gif|webp)(\?\S*)?", re.IGNORECASE)
- 
- 
 async def _fetch_bytes(url: str) -> bytes | None:
     try:
         async with aiohttp.ClientSession() as session:
@@ -85,13 +81,13 @@ class Utility(commands.Cog):
         name="addemoji",
         aliases=["stealemoji"],
         description="Add one or more emojis to the server",
-        usage="addemoji <emoji1> [emoji2] [emoji3] ..."
+        usage="addemoji <emoji1> [emoji2] [emoji3] ... [name]"
     )
     @bled()
     @commands.has_permissions(manage_emojis=True)
     @commands.bot_has_permissions(manage_emojis=True)
     @commands.cooldown(1, 5, commands.BucketType.user)
-    @app_commands.describe(emojis="One or more custom emojis or image URLs to add")
+    @app_commands.describe(emojis="Custom emojis, image URLs, or name to add (e.g. :emoji: MyName)")
     async def addemoji(self, ctx: commands.Context, *, emojis: str = None):
         if ctx.interaction:
             await ctx.defer()
@@ -119,7 +115,6 @@ class Utility(commands.Cog):
                 return
             tokens = CUSTOM_EMOJI_RE.findall(emojis)
             tokens = [f"<{a}:{n}:{i}>" for a, n, i in tokens]
-            url_tokens = URL_RE.findall(emojis) 
             url_tokens = URL_RE.finditer(emojis)
             for m in url_tokens:
                 tokens.append(m.group(0))
@@ -259,10 +254,11 @@ class Utility(commands.Cog):
             f"## ❓ Add Emoji\n"
             f"Add one or more emojis to this server.\n\n"
             f"**Usage:**\n"
-            f"`{prefix}addemoji <emoji1> [emoji2] [emoji3] ...`\n\n"
+            f"`{prefix}addemoji <emoji1> [emoji2] [emoji3] ... [name]`\n\n"
             f"**Examples:**\n"
             f"{e_dot} `{prefix}addemoji :emoji1: :emoji2: :emoji3:`\n"
             f"{e_dot} `{prefix}addemoji https://example.com/img.png`\n"
+            f"{e_dot} `{prefix}addemoji :emoji: MyName` — sets a custom name for the emoji\n"
             f"{e_dot} Reply to any message containing emojis with `{prefix}addemoji`"
         ))
         layout.add_item(c)
@@ -385,6 +381,7 @@ class Utility(commands.Cog):
     @commands.hybrid_command(name="embed", description="Interactively build and send an embed", aliases=['createembed', 'buildembed'])
     @bled()
     @commands.has_permissions(manage_messages=True)
+    @commands.bot_has_permissions(manage_messages=True, read_message_history=True)
     @commands.cooldown(1, 15, commands.BucketType.user)
     async def embed(self, ctx: commands.Context):
         uid = ctx.author.id
@@ -416,7 +413,9 @@ class Utility(commands.Cog):
             preebd = await ctx.reply(content="**Embed Preview** — Might take sometime to load, keep going!\n**Type `cancel` anytime to cancel. Type `none` to skip a field.**", embed=liveebd, mention_author=False)
 
             channel_msg = await ask("**Which channel should I send the embed in? Mention it or type `here` for this channel:**")
-            if channel_msg.content.lower() == "here":
+            if channel_msg is None or channel_msg.content.lower() == "none":
+                target_channel = ctx.channel
+            elif channel_msg.content.lower() == "here":
                 target_channel = ctx.channel
             elif channel_msg.channel_mentions:
                 target_channel = channel_msg.channel_mentions[0]
@@ -481,7 +480,10 @@ class Utility(commands.Cog):
                 await ctx.send("**⚠ Invalid URL, skipping button.**", delete_after=5)
 
             await preebd.delete()
-            await ctx.message.delete()
+            try:
+                await ctx.message.delete()
+            except discord.HTTPException:
+                pass
             await target_channel.send(embed=liveebd, view=view)
             await ctx.send(f"**✅ Embed sent successfully in {target_channel.mention}!**", delete_after=5)
 
@@ -838,9 +840,17 @@ class Utility(commands.Cog):
     @bled()
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def banner(self, ctx: commands.Context):
-        cmd = self.bot.get_command("help")
-        if cmd:
-            await ctx.invoke(cmd, query="utility")
+        prefix = guild_prefix(str(ctx.guild.id)) if ctx.guild else "."
+        embed = discord.Embed(
+            title="Banner Commands",
+            description=(
+                f"{e_dot} `{prefix}banner user [member]` — View a user's banner\n"
+                f"{e_dot} `{prefix}banner server` — View the server's banner"
+            ),
+            color=colour,
+        )
+        embed.set_footer(text=f"Requested by {ctx.author}", icon_url=ctx.author.display_avatar.url)
+        await ctx.reply(embed=embed, mention_author=False)
 
     @banner.command(name="user", description="Displays the banner of a user.", usage="banner user [member]", category="Utility")
     @bled()
