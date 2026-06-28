@@ -151,6 +151,52 @@ async def chuttt(ctx: commands.Context, **kwargs):
         pass 
 
 
+GLOBAL_COOLDOWN_RATE = 1
+GLOBAL_COOLDOWN_PER = 3
+_last_command_time = {}
+
+async def _check_global_cooldown(uid: int) -> tuple[bool, float]:
+    now = time.time()
+    last = _last_command_time.get(uid, 0)
+    if now - last < GLOBAL_COOLDOWN_PER:
+        return True, GLOBAL_COOLDOWN_PER - (now - last)
+    return False, 0.0
+
+@client.check
+async def global_cooldown_prefix(ctx: commands.Context):
+    uid = ctx.author.id
+    if uid in developer_team_ids:
+        return True
+    limited, retry_after = await _check_global_cooldown(uid)
+    if limited:
+        bucket = commands.Cooldown(GLOBAL_COOLDOWN_RATE, GLOBAL_COOLDOWN_PER)
+        raise commands.CommandOnCooldown(bucket, retry_after, commands.BucketType.user)
+    _last_command_time[uid] = time.time()
+    return True
+
+async def _global_cooldown_slash(interaction: discord.Interaction):
+    uid = interaction.user.id
+    if uid in developer_team_ids:
+        return True
+    limited, retry_after = await _check_global_cooldown(uid)
+    if limited:
+        embed = discord.Embed(
+            description=f"❗ Command on cooldown. Try again in `{retry_after:.2f}s`.", color=colour,
+        )
+        embed.set_author(name="Assister Slowdown", icon_url=client.user.avatar.url if client.user else discord.Embed.Empty)
+        try:
+            if interaction.response.is_done():
+                await interaction.followup.send(embed=embed, ephemeral=True)
+            else:
+                await interaction.response.send_message(embed=embed, ephemeral=True)
+        except Exception:
+            pass
+        return False
+    _last_command_time[uid] = time.time()
+    return True
+
+client.tree.interaction_check = _global_cooldown_slash
+
 @client.event
 async def on_command_error(ctx: commands.Context, error):
 
@@ -159,6 +205,13 @@ async def on_command_error(ctx: commands.Context, error):
         
     if isinstance(error, commands.CommandOnCooldown):
         uid = ctx.author.id
+        if uid in developer_team_ids:
+            ctx.command.reset_cooldown(ctx)
+            try:
+                await ctx.command.reinvoke(ctx, call_hooks=True)
+            except Exception:
+                pass
+            return
         if uid not in _cooldown_notified:
             _cooldown_notified.add(uid)
             embed = discord.Embed(
@@ -385,7 +438,7 @@ async def main():
         await client.load_extension("jishaku")
         print("Loaded  jishaku")
     except Exception:
-        print("jishaku not installed — skipping")
+        print("lund jishaku")
     await client.start(TOKEN)
 
 
