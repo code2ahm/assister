@@ -774,20 +774,19 @@ class Moderation(commands.Cog):
         hidden_roles = []
         failed_roles = []
 
+        try:
+            await channel.set_permissions(ctx.guild.default_role, view_channel=False, reason=f"Hidden by {ctx.author}")
+            hidden_roles.append(ctx.guild.default_role)
+        except:
+            failed_roles.append(ctx.guild.default_role)
+
         for target in channel.overwrites:
-            if isinstance(target, discord.Role):
+            if isinstance(target, discord.Role) and target != ctx.guild.default_role:
                 try:
                     await channel.set_permissions(target, view_channel=False, reason=f"Hidden by {ctx.author}")
                     hidden_roles.append(target)
                 except:
                     failed_roles.append(target)
-
-        if not hidden_roles:
-            try:
-                await channel.set_permissions(ctx.guild.default_role, view_channel=False, reason=f"Hidden by {ctx.author}")
-                hidden_roles.append(ctx.guild.default_role)
-            except:
-                failed_roles.append(ctx.guild.default_role)
 
         pages = self._make_pages("🔒 Channel Hidden", hidden_roles, failed_roles, "Hidden from", "Failed", ctx)
         if len(pages) > 1:
@@ -831,8 +830,14 @@ class Moderation(commands.Cog):
         unhidden_roles = []
         failed_roles = []
 
+        try:
+            await channel.set_permissions(ctx.guild.default_role, view_channel=None, reason=f"Unhidden by {ctx.author}")
+            unhidden_roles.append(ctx.guild.default_role)
+        except:
+            failed_roles.append(ctx.guild.default_role)
+
         for target in channel.overwrites:
-            if isinstance(target, discord.Role):
+            if isinstance(target, discord.Role) and target != ctx.guild.default_role:
                 try:
                     await channel.set_permissions(target, view_channel=None, reason=f"Unhidden by {ctx.author}")
                     unhidden_roles.append(target)
