@@ -10,6 +10,7 @@ from utils.checks import *
 from discord.ui import Button, View
 from typing import Union
 import io
+import asyncio
 
 
 class Moderation(commands.Cog):
@@ -713,36 +714,93 @@ class Moderation(commands.Cog):
 
 
 
-    def _make_pages(self, title: str, tick_roles: list, cross_roles: list, label_ok: str, label_fail: str, ctx):
+    async def _set_channel_perm(self, channel, role, view_value, reason):
+        try:
+            await channel.set_permissions(role, view_channel=view_value, reason=reason)
+            return True, None
+        except discord.Forbidden:
+            return False, "Missing permissions"
+        except discord.HTTPException as e:
+            if e.status == 429:
+                return False, "Rate limited"
+            return False, f"HTTP {e.status}"
+        except asyncio.TimeoutError:
+            return False, "Timeout"
+        except Exception as e:
+            return False, str(e)[:80]
+
+    def _make_pages(self, title, ok_items, fail_items, label_ok, label_fail, ctx):
         pages = []
         per_page = 20
 
-        if tick_roles:
-            chunks = [tick_roles[i:i+per_page] for i in range(0, len(tick_roles), per_page)]
+        if ok_items:
+            chunks = [ok_items[i:i+per_page] for i in range(0, len(ok_items), per_page)]
             for idx, chunk in enumerate(chunks):
                 lines = [f"## {title}"]
-                lines.append(f"\n**{label_ok} ({len(tick_roles)}):**")
-                lines.append("\n".join(f"{tick} {r.mention}" for r in chunk))
+                lines.append(f"\n**{label_ok} ({len(ok_items)}):**")
+                lines.append("\n".join(f"{tick} {i.mention}" for i in chunk))
                 if len(chunks) > 1:
                     lines.append(f"\nPage {idx+1} of {len(chunks)}")
                 embed = discord.Embed(description="\n".join(lines), color=colour)
                 embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
                 pages.append(embed)
 
-        if cross_roles:
-            lines = [f"## {title}"]
-            lines.append(f"\n**{label_fail} ({len(cross_roles)}):**")
-            lines.append("\n".join(f"{cross} {r.mention}" for r in cross_roles))
-            embed = discord.Embed(description="\n".join(lines), color=colour)
-            embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
-            pages.append(embed)
+        if fail_items:
+            chunks = [fail_items[i:i+per_page] for i in range(0, len(fail_items), per_page)]
+            for idx, chunk in enumerate(chunks):
+                lines = [f"## {title}"]
+                lines.append(f"\n**{label_fail} ({len(fail_items)}):**")
+                for item in chunk:
+                    if isinstance(item, tuple):
+                        lines.append(f"{cross} {item[0].mention} — {item[1]}")
+                    else:
+                        lines.append(f"{cross} {item.mention}")
+                if len(chunks) > 1:
+                    lines.append(f"\nPage {idx+1} of {len(chunks)}")
+                embed = discord.Embed(description="\n".join(lines), color=colour)
+                embed.set_footer(text=f"Moderator: {ctx.author.display_name}  •  {ctx.guild.name}", icon_url=ctx.author.display_avatar.url)
+                pages.append(embed)
 
         if not pages:
-            return [discord.Embed(description=f"## {title}\n\nNo roles affected.", color=colour)]
+            return [discord.Embed(description=f"## {title}\n\nNothing affected.", color=colour)]
         return pages
 
+    async def _process_all_channels(self, ctx, view_value, action_emoji, action_verb, done_title):
+        if ctx.interaction:
+            await ctx.defer()
 
-    @commands.hybrid_command(
+        msg = await ctx.reply(embed=discord.Embed(description=f"{action_emoji} {action_verb} all channels...", color=colour), mention_author=False)
+
+        ok, fail = [], []
+        channels = [c for c in ctx.guild.channels if hasattr(c, 'set_permissions')]
+        total = len(channels)
+
+        for i, ch in enumerate(channels):
+            success, err = await self._set_channel_perm(ch, ctx.guild.default_role, view_value, f"{action_verb.title()} by {ctx.author}")
+            if success:
+                ok.append(ch)
+            else:
+                fail.append((ch, err))
+
+            if (i + 1) % 15 == 0 or i == total - 1:
+                try:
+                    await msg.edit(embed=discord.Embed(description=f"{action_emoji} {action_verb} all channels... ({i+1}/{total})", color=colour))
+                except:
+                    pass
+
+            await asyncio.sleep(0.5)
+
+        pages = self._make_pages(done_title, ok, fail, "Hidden" if view_value is False else "Unhidden", "Failed", ctx)
+        if len(pages) > 1:
+            paginator = Ahm(pages=pages, timeout=120)
+            paginator.message = msg
+            paginator.ctx = ctx
+            await paginator.update_message()
+        else:
+            await msg.edit(embed=pages[0], view=None)
+
+
+    @commands.hybrid_group(
         name="hide",
         description="Hides a channel from everyone role.",
         usage="hide [channel]"
@@ -753,6 +811,9 @@ class Moderation(commands.Cog):
     @commands.cooldown(1, 10, commands.BucketType.user)
     @app_commands.describe(channel="Channel to hide (defaults to current)")
     async def hide(self, ctx: commands.Context, channel: discord.TextChannel = None):
+        if ctx.invoked_subcommand is not None:
+            return
+
         channel = channel or ctx.channel
 
         confirm_view = YoNo(timeout=60)
@@ -774,19 +835,19 @@ class Moderation(commands.Cog):
         hidden_roles = []
         failed_roles = []
 
-        try:
-            await channel.set_permissions(ctx.guild.default_role, view_channel=False, reason=f"Hidden by {ctx.author}")
+        ok, err = await self._set_channel_perm(channel, ctx.guild.default_role, False, f"Hidden by {ctx.author}")
+        if ok:
             hidden_roles.append(ctx.guild.default_role)
-        except:
-            failed_roles.append(ctx.guild.default_role)
+        else:
+            failed_roles.append((ctx.guild.default_role, err))
 
         for target in channel.overwrites:
             if isinstance(target, discord.Role) and target != ctx.guild.default_role:
-                try:
-                    await channel.set_permissions(target, view_channel=False, reason=f"Hidden by {ctx.author}")
+                ok, err = await self._set_channel_perm(channel, target, False, f"Hidden by {ctx.author}")
+                if ok:
                     hidden_roles.append(target)
-                except:
-                    failed_roles.append(target)
+                else:
+                    failed_roles.append((target, err))
 
         pages = self._make_pages("🔒 Channel Hidden", hidden_roles, failed_roles, "Hidden from", "Failed", ctx)
         if len(pages) > 1:
@@ -798,7 +859,20 @@ class Moderation(commands.Cog):
             await msg.edit(embed=pages[0], view=None)
 
 
-    @commands.hybrid_command(
+    @hide.command(
+        name="all",
+        description="Hides all channels from everyone role.",
+        usage="hide all"
+    )
+    @commands.has_permissions(administrator=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    @bled()
+    @commands.cooldown(1, 300, commands.BucketType.guild)
+    async def hide_all(self, ctx: commands.Context):
+        await self._process_all_channels(ctx, False, "<a:1289683858337562625:1517941057931706519>", "hiding", "🔒 All Channels Hidden")
+
+
+    @commands.hybrid_group(
         name="unhide",
         description="Unhides a channel from everyone role.",
         usage="unhide [channel]"
@@ -809,6 +883,9 @@ class Moderation(commands.Cog):
     @commands.cooldown(1, 10, commands.BucketType.user)
     @app_commands.describe(channel="Channel to unhide (defaults to current)")
     async def unhide(self, ctx: commands.Context, channel: discord.TextChannel = None):
+        if ctx.invoked_subcommand is not None:
+            return
+
         channel = channel or ctx.channel
 
         confirm_view = YoNo(timeout=60)
@@ -830,19 +907,19 @@ class Moderation(commands.Cog):
         unhidden_roles = []
         failed_roles = []
 
-        try:
-            await channel.set_permissions(ctx.guild.default_role, view_channel=None, reason=f"Unhidden by {ctx.author}")
+        ok, err = await self._set_channel_perm(channel, ctx.guild.default_role, None, f"Unhidden by {ctx.author}")
+        if ok:
             unhidden_roles.append(ctx.guild.default_role)
-        except:
-            failed_roles.append(ctx.guild.default_role)
+        else:
+            failed_roles.append((ctx.guild.default_role, err))
 
         for target in channel.overwrites:
             if isinstance(target, discord.Role) and target != ctx.guild.default_role:
-                try:
-                    await channel.set_permissions(target, view_channel=None, reason=f"Unhidden by {ctx.author}")
+                ok, err = await self._set_channel_perm(channel, target, None, f"Unhidden by {ctx.author}")
+                if ok:
                     unhidden_roles.append(target)
-                except:
-                    failed_roles.append(target)
+                else:
+                    failed_roles.append((target, err))
 
         pages = self._make_pages("🔓 Channel Unhidden", unhidden_roles, failed_roles, "Unhidden for", "Failed", ctx)
         if len(pages) > 1:
@@ -852,6 +929,19 @@ class Moderation(commands.Cog):
             await paginator.update_message()
         else:
             await msg.edit(embed=pages[0], view=None)
+
+
+    @unhide.command(
+        name="all",
+        description="Unhides all channels from everyone role.",
+        usage="unhide all"
+    )
+    @commands.has_permissions(administrator=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    @bled()
+    @commands.cooldown(1, 300, commands.BucketType.guild)
+    async def unhide_all(self, ctx: commands.Context):
+        await self._process_all_channels(ctx, None, "<a:1289683858337562625:1517941057931706519>", "unhiding", "🔓 All Channels Unhidden")
 
 
 async def setup(bot):
