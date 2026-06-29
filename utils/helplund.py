@@ -301,7 +301,9 @@ lul = {
         "removerole": {"description": "Removes a role from a member", "usage": "rrole <member> <role>"},
         "clonechannel": {"description": "Deletes and recreates the channel", "usage": "nuke [channel]"},
         "hide": {"description": "Hides a channel from everyone role", "usage": "hide [channel]"},
+        "hide all": {"description": "Hides all channels from everyone role", "usage": "hide all"},
         "unhide": {"description": "Unhides a channel from everyone role", "usage": "unhide [channel]"},
+        "unhide all": {"description": "Unhides all channels from everyone role", "usage": "unhide all"},
     }
 }
 
